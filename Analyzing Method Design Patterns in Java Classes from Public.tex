@@ -112,23 +112,47 @@ In the next section, we propose a methodology for analyzing method design patter
 \subsection{Data Collection}
 To analyze method design patterns in Java classes from public GitHub repositories, a large-scale dataset containing Java source code files is required. This dataset needs to cover a diverse range of projects to ensure a representative sample.\\
 ~\\
-The primary source of data for this research will be the GitHub public API. The API allows programmatic access to a wide variety of information related to repositories, including source code files. The data will be collected by querying the API using appropriate search criteria to retrieve the required Java class files. The search criteria will include keywords related to the research topic, such as "{}Java class,"{} "{}method design patterns,"{} and variations thereof. The search will be conducted on repositories with a sufficient number of stars and forks to ensure popularity and quality.\\
+The primary source of data for this research will be the CaM dataset. Classes and Metriсs (CaM) is a dataset of Java classes from public open-source GitHub repositories that updated periodically with new data.\\
 ~\\
-Furthermore, specific inclusion and exclusion criteria will be applied to filter the retrieved data effectively. Inclusion criteria will include the requirement for each repository to have a minimum number of contributors and commits to ensure that the project is actively developed. Exclusion criteria will be set to remove irrelevant projects, such as those written in languages other than Java or those containing predominantly auto-generated code. These criteria will be defined based on preliminary analysis and expert judgment.
+It is the result of the analysis of Java classes in 1000 GitHub repositories against a number of metrics:
+\begin{itemize}
+\item lines of code (reported by cloc),
+\item lines of comments,
+\item blank lines,
+\item NCSS,
+\item cyclomatic complexity,
+\item number of attributes,
+\item number of static attributes,
+\item number of constructors,
+\item number of methods,
+\item number of static methods,
+\item total cognitive complexity (reported by PMD),
+\item maximum cognitive complexity,
+\item minimum cognitive complexity,
+\item average cognitive complexity,
+\item number of committers.
+\end{itemize}
+~\\
+With this dataset, we will be able to track the use of manipulators and builders in the code and analyze how they affect metrics. We will also calculate the percentage of the use of both principles and check whether they are used correctly\\
 \subsection{Data Preprocessing and Cleaning}
-Once the data is collected, it will undergo preprocessing and cleaning steps to filter out irrelevant information and prepare it for analysis. The preprocessing steps will include parsing the Java source code files to extract class-level details, method signatures, and associated metadata.\\
-~\\
-The cleaning process will consist of removing duplicates, irrelevant files (e.g., configuration files, test files), and incomplete files. Additionally, any sensitive information, such as account credentials or API keys, will be anonymized or removed to ensure data privacy.
+To begin with, the code used in the dataset will be divided into methods. The rest of the information is not used in this research work.\\
 \subsection{Pattern Identification and Classification}
 To analyze the method design patterns in the Java classes, a pattern identification and classification process will be employed. This process includes detecting and categorizing the identified design patterns into manipulators or builders.\\
 ~\\
 To identify design patterns, a combination of lexical analysis, abstract syntax tree (AST) parsing, and rule-based matching will be utilized. Lexical analysis will assist in tokenizing the source code, while AST parsing will provide a hierarchical representation of the code's structure. Rule-based matching will be employed to detect specific patterns based on predefined rules and patterns from the literature.\\
 ~\\
-The identified design patterns will then be classified as manipulators or builders based on their characteristics and intent. Manipulators are defined as methods that modify the internal state of an object, while builders are methods that construct and return new objects, usually with a fluent interface. This classification will be based on a combination of static analysis of the code and expert validation.
+The methods will then be classified as manipulators or builders based on their characteristics and intent. This classification will be based on a combination of static analysis of the code and LLM validation.\\
+~\\
+Thus, several variants of pattern definition will be created for preprocessing of materials:
+\begin{itemize}
+  \item Software code analyzer. To do this, we will go through the code line by line and check whether it returns anything, whether it changes parameters.
+  \item Automatic LM analyzer. To determine the pattern, a request will be made to the LLM model asking what kind of pattern it is.
+  \item Analyzer of the method name. In this case, to determine the pattern used in the method, its name will be checked.
+\end{itemize}
 \subsection{Evaluation and Validation}
 The method design patterns identified and classified through the aforementioned process will be evaluated and validated to ensure their accuracy and reliability.\\
 ~\\
-For evaluation, a set of randomly selected Java classes will be manually reviewed by domain experts to assess the correctness of the identified design patterns. They will compare the results obtained from the automated analysis with their domain knowledge to verify the accuracy of the classification.\\
+For evaluation, a set of randomly selected Java classes will be manually reviewed by authors to assess the correctness of the identified design patterns. They will compare the results obtained from the automated analysis with their domain knowledge to verify the accuracy of the classification.\\
 ~\\
 To further validate the findings, a survey will be conducted among a group of experienced Java developers. The survey will present them with code snippets containing identified design patterns and ask them to corroborate the classification. The feedback gathered from the survey will provide insights into the agreement between automated analysis and human judgment.
 \subsection{Analysis and Results}
