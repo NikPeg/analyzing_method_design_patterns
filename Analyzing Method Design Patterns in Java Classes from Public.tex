@@ -133,9 +133,9 @@ It is the result of the analysis of Java classes in 1000 GitHub repositories aga
 \item number of committers.
 \end{itemize}
 ~\\
-With this dataset, we will be able to track the use of manipulators and builders in the code and analyze how they affect metrics. We will also calculate the percentage of the use of both principles and check whether they are used correctly\\
+With this dataset, we will be able to track the use of manipulators and builders in the code. We will also calculate the percentage of the use of both principles and check whether they are used correctly.\\
 \subsection{Data Preprocessing and Cleaning}
-To begin with, the code used in the dataset will be divided into methods. The rest of the information is not used in this research work.\\
+To begin with, the code used in the dataset will be divided into methods by abstract syntax tree (AST) parsing. The rest of the information is not used in this research work.\\
 \subsection{Pattern Identification and Classification}
 To analyze the method design patterns in the Java classes, a pattern identification and classification process will be employed. This process includes detecting and categorizing the identified design patterns into manipulators or builders.\\
 ~\\
@@ -145,7 +145,7 @@ The methods will then be classified as manipulators or builders based on their c
 ~\\
 Thus, several variants of pattern definition will be created for preprocessing of materials:
 \begin{itemize}
-  \item Software code analyzer. To do this, we will go through the code line by line and check whether it returns anything, whether it changes parameters.
+  \item Rule-based code analyzer. To do this, we will go through the code line by line and check whether it returns anything, whether it changes parameters.
   \item Automatic LM analyzer. To determine the pattern, a request will be made to the LLM model asking what kind of pattern it is.
   \item Analyzer of the method name. In this case, to determine the pattern used in the method, its name will be checked.
 \end{itemize}
