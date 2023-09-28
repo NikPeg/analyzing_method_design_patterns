@@ -73,9 +73,9 @@ Understanding and analyzing method design patterns in Java classes is important 
 ~\\
 With the advent of public code repositories, such as GitHub, it is now possible to access a vast amount of open-source Java projects. These repositories contain an abundance of Java classes that exhibit diverse method design patterns. By analyzing these classes, we can gain valuable insights into the prevalence and characteristics of method design patterns in real-world software systems.\\
 ~\\
-This research work aims to analyze method design patterns in Java classes obtained from public GitHub repositories. Specifically, we intend to collect a substantial number of Java classes, extract their methods, and classify them into manipulators and builders. By doing so, we can identify common patterns, variations, and usage scenarios of these method design patterns. Furthermore, this research will investigate the relationship between method design patterns and software quality metrics, such as code duplication, complexity, and maintainability.\\
+This research paper aims to analyze method design patterns in Java classes obtained from public GitHub repositories. Specifically, we intend to collect a substantial number of Java classes, extract their methods, and classify them into manipulators and builders. By doing so, we can identify common patterns, variations, and usage scenarios of these method design patterns. Furthermore, this research will investigate the relationship between method design patterns and software quality metrics, such as code duplication, complexity, and maintainability.\\
 ~\\
-This research work is organized into sections detailing a literature review, an overview of Java method design patterns, research methodology, analysis of manipulator and builder methods in Java classes, comparative analysis, discussion of findings, implications and recommendations, conclusion, future work, and references.\\
+This research paper is organized into sections detailing a literature review, an overview of Java method design patterns, research methodology, analysis of manipulator and builder methods in Java classes, comparative analysis, discussion of findings, implications and recommendations, conclusion, future work, and references.\\
 ~\\
 
 \newpage
@@ -135,7 +135,11 @@ It is the result of the analysis of Java classes in 1000 GitHub repositories aga
 ~\\
 With this dataset, we will be able to track the use of manipulators and builders in the code. We will also calculate the percentage of the use of both principles and check whether they are used correctly.\\
 \subsection{Data Preprocessing and Cleaning}
-To begin with, the code used in the dataset will be divided into methods by abstract syntax tree (AST) parsing. The rest of the information is not used in this research work.\\
+AST parsing is a technique used to extract information from code by analyzing its abstract syntax tree. An abstract syntax tree is a tree-like structure that represents the structure of the code, capturing its hierarchical relationships and syntax rules.\\
+~\\
+In this research paper, the code used in the dataset will be divided into methods by AST parsing. The main goal is to separate the code into smaller units of functionality, which are represented by individual methods. This allows for a more detailed analysis and understanding of the code's logic and behavior.\\
+~\\
+By parsing the code into methods, authors can focus on specific parts of the code and analyze them in isolation. This can be especially useful when trying to determine the pattern used in the method: manipulator or builder.\\
 \subsection{Pattern Identification and Classification}
 To analyze the method design patterns in the Java classes, a pattern identification and classification process will be employed. This process includes detecting and categorizing the identified design patterns into manipulators or builders.\\
 ~\\
@@ -198,13 +202,13 @@ In this section, we compare the properties and characteristics of manipulator an
 
 \newpage
 \section{Conclusion}
-In conclusion, this research work aimed to analyze method design patterns in Java classes from public GitHub repositories, specifically focusing on the idea that methods in a class must either be manipulators or builders.\\
+In conclusion, this research paper aimed to analyze method design patterns in Java classes from public GitHub repositories, specifically focusing on the idea that methods in a class must either be manipulators or builders.\\
 ~\\
 
 
 \newpage
 \section{Future Work}
-Although this research work analyzed and identified method design patterns in Java classes from public GitHub repositories, there are several potential directions for future research and improvements. The following subsections outline some possible areas for future work.
+Although this research paper analyzed and identified method design patterns in Java classes from public GitHub repositories, there are several potential directions for future research and improvements. The following subsections outline some possible areas for future work.
 \subsection{Evaluation of Other Design Patterns}
 While this work focused on identifying manipulator and builder patterns in Java classes, there still exist various other design patterns that can be analyzed. Future research could explore the detection and categorization of other commonly used design patterns, such as observer, singleton, factory, and adapter patterns. This would provide a more comprehensive understanding of the design patterns employed in publicly available Java code.
 \subsection{Evaluation of Method Interactions}
@@ -216,7 +220,7 @@ Although this study focused on Java classes, the approach used to identify desig
 \subsection{Integration with Development Tools}
 Integrating the pattern identification algorithm into popular Integrated Development Environments (IDEs) and software development tools would greatly benefit software developers. The automated detection and visualization of design patterns directly within the development environment could aid in the understanding, maintenance, and refactoring of software systems.\\
 ~\\
-Overall, this research work provides a strong foundation for future research on the analysis and understanding of method design patterns in Java classes. The suggested future work directions aim to extend the current research and address important aspects that were not covered comprehensively in this study.\\
+Overall, this research paper provides a strong foundation for future research on the analysis and understanding of method design patterns in Java classes. The suggested future work directions aim to extend the current research and address important aspects that were not covered comprehensively in this study.\\
 ~\\
 
 \newpage
