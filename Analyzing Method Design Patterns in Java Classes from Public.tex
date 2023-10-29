@@ -125,17 +125,14 @@ In the next section, we propose a methodology for analyzing method design patter
 ~\\
 
 \newpage
-\section{Research Methodology}
+\section{Method}
+The research method for our study was carried out through an empirical analysis of the Classes and Metrics (CaM) dataset\cite{ref9}. The CaM dataset is a comprehensive and rich collection of Java classes extracted from public open-source repositories on GitHub.\\
+~\\
+The dataset served as the primary source of empirical data for the study, providing access to a wide range of Java classes in diverse projects. It was used as a basis for extracting, assessing, and categorizing various method design patterns used in different Java classes and projects.
 \subsection{Data Collection}
-To analyze method design patterns in Java classes from public GitHub repositories, a large-scale dataset containing Java source code files is required. This dataset needs to cover a diverse range of projects to ensure a representative sample.\\
-~\\
-The primary source of data for this research will be the GitHub public API. The API allows programmatic access to a wide variety of information related to repositories, including source code files. The data will be collected by querying the API using appropriate search criteria to retrieve the required Java class files. The search criteria will include keywords related to the research topic, such as "{}Java class,"{} "{}method design patterns,"{} and variations thereof. The search will be conducted on repositories with a sufficient number of stars and forks to ensure popularity and quality.\\
-~\\
-Furthermore, specific inclusion and exclusion criteria will be applied to filter the retrieved data effectively. Inclusion criteria will include the requirement for each repository to have a minimum number of contributors and commits to ensure that the project is actively developed. Exclusion criteria will be set to remove irrelevant projects, such as those written in languages other than Java or those containing predominantly auto-generated code. These criteria will be defined based on preliminary analysis and expert judgment.
+The first step in our research methodology involved acquiring the CaM dataset. We utilized the publicly available dataset from GitHub, which includes numerous Java classes collected from various open-source projects. These classes come from a range of different applications and domains, providing a good representation of Java programming in practice.
 \subsection{Data Preprocessing and Cleaning}
-Once the data is collected, it will undergo preprocessing and cleaning steps to filter out irrelevant information and prepare it for analysis. The preprocessing steps will include parsing the Java source code files to extract class-level details, method signatures, and associated metadata.\\
-~\\
-The cleaning process will consist of removing duplicates, irrelevant files (e.g., configuration files, test files), and incomplete files. Additionally, any sensitive information, such as account credentials or API keys, will be anonymized or removed to ensure data privacy.
+Once the dataset was obtained, the next step was data preprocessing. The CaM dataset was cleaned to remove any classes that may skew the analysis, such as test classes, empty classes, or classes with unique characteristics that are not representative of common Java classes.
 \subsection{Pattern Identification and Classification}
 To analyze the method design patterns in the Java classes, a pattern identification and classification process will be employed. This process includes detecting and categorizing the identified design patterns into manipulators or builders.\\
 ~\\
@@ -216,7 +213,7 @@ Overall, this research work provides a strong foundation for future research on 
 \section*{List of Sources Used}
 \begin{thebibliography}{9}
   \bibitem{ref1}
-  R. Khatchadourian and H. Masuhara, "{}Automated Refactoring of Legacy Java Software to Default Methods,"{} 2017 IEEE/ACM 39th International Conference on Software Engineering (ICSE), Buenos Aires, Argentina, 2017, pp. 82-93, doi: 10.1109/ICSE.2017.16, https://ieeexplore.ieee.org/abstract/document/7985652
+  R. Khatchadourian and H. Masuhara, "{}Automated Refactoring of Legacy Java Software to Default Methods"{}, 2017 IEEE/ACM 39th International Conference on Software Engineering (ICSE), Buenos Aires, Argentina, 2017, pp. 82-93, doi: 10.1109/ICSE.2017.16, https://ieeexplore.ieee.org/abstract/document/7985652
 
   \bibitem{ref2}
   Yoshiki Higo, Shinpei Hayashi, Shinji Kusumoto, On tracking Java methods with Git mechanisms, Journal of Systems and Software,Volume 165,2020,110571,ISSN 0164-1212, https://doi.org/10.1016/j.jss.2020.110571.
@@ -228,17 +225,19 @@ Overall, this research work provides a strong foundation for future research on 
   Komolov, S.; Dlamini, G.; Megha, S.; Mazzara, M. Towards Predicting Architectural Design Patterns: A Machine Learning Approach. Computers 2022, 11, 151. https://doi.org/10.3390/computers11100151
 
   \bibitem{ref5}
-  N. Shi and R. A. Olsson, "{}Reverse Engineering of Design Patterns from Java Source Code,"{} 21st IEEE/ACM International Conference on Automated Software Engineering (ASE'06), Tokyo, Japan, 2006, pp. 123-134, doi: 10.1109/ASE.2006.57, https://ieeexplore.ieee.org/abstract/document/4019568
+  N. Shi and R. A. Olsson, "{}Reverse Engineering of Design Patterns from Java Source Code"{}, 21st IEEE/ACM International Conference on Automated Software Engineering (ASE'06), Tokyo, Japan, 2006, pp. 123-134, doi: 10.1109/ASE.2006.57, https://ieeexplore.ieee.org/abstract/document/4019568
 
   \bibitem{ref6}
   Dwivedi, A.K., Tirkey, A. \& Rath, S.K. Applying learning-based methods for recognizing design patterns. Innovations Syst Softw Eng 15, 87–100 (2019). https://doi.org/10.1007/s11334-019-00329-3
 
   \bibitem{ref7}
-  Y. Zhang, D. Lo, P. S. Kochhar, X. Xia, Q. Li and J. Sun, "{}Detecting similar repositories on GitHub,"{} 2017 IEEE 24th International Conference on Software Analysis, Evolution and Reengineering (SANER), Klagenfurt, Austria, 2017, pp. 13-23, doi: 10.1109/SANER.2017.7884605, https://ieeexplore.ieee.org/abstract/document/7884605
+  Y. Zhang, D. Lo, P. S. Kochhar, X. Xia, Q. Li and J. Sun, "{}Detecting similar repositories on GitHub"{}, 2017 IEEE 24th International Conference on Software Analysis, Evolution and Reengineering (SANER), Klagenfurt, Austria, 2017, pp. 13-23, doi: 10.1109/SANER.2017.7884605, https://ieeexplore.ieee.org/abstract/document/7884605
 
   \bibitem{ref8}
   Hu, Lei \& Sartipi, Kamran. (2008). Dynamic Analysis and Design Pattern Detection in Java Programs.. 20th International Conference on Software Engineering and Knowledge Engineering, SEKE 2008. 842-846, https://ecommons.luc.edu/cgi/viewcontent.cgi?referer=\&httpsredir=1\&article=1036\&context=cs\_facpubs\#page=871
 
+  \bibitem{ref9}
+  yegor256, Classes and Metriсs (CaM): a dataset of Java classes from public open-source GitHub repositories, https://github.com/yegor256/cam
 \end{thebibliography}
 
 \end{document}
