@@ -73,17 +73,34 @@ Understanding and analyzing method design patterns in Java classes is important 
 ~\\
 With the advent of public code repositories, such as GitHub, it is now possible to access a vast amount of open-source Java projects. These repositories contain an abundance of Java classes that exhibit diverse method design patterns. By analyzing these classes, we can gain valuable insights into the prevalence and characteristics of method design patterns in real-world software systems.\\
 ~\\
-This research paper aims to analyze method design patterns in Java classes obtained from public GitHub repositories. Specifically, we intend to collect a substantial number of Java classes, extract their methods, and classify them into manipulators and builders. By doing so, we can identify common patterns, variations, and usage scenarios of these method design patterns. Furthermore, this research will investigate the relationship between method design patterns and software quality metrics, such as code duplication, complexity, and maintainability.\\
+This research work aims to analyze method design patterns in Java classes obtained from public GitHub repositories. Specifically, we intend to collect a substantial number of Java classes, extract their methods, and classify them into manipulators and builders. By doing so, we can identify common patterns, variations, and usage scenarios of these method design patterns. Furthermore, this research will investigate the relationship between method design patterns and software quality metrics, such as code duplication, complexity, and maintainability.\\
 ~\\
-This research paper is organized into sections detailing a literature review, an overview of Java method design patterns, research methodology, analysis of manipulator and builder methods in Java classes, comparative analysis, discussion of findings, implications and recommendations, conclusion, future work, and references.\\
+This research work is organized into sections detailing a literature review, an overview of Java method design patterns, research methodology, analysis of manipulator and builder methods in Java classes, comparative analysis, discussion of findings, implications and recommendations, conclusion, future work, and references.\\
 ~\\
 
 \newpage
 \section{Literature Review}
-This section provides an overview of the existing literature on the topic of analyzing method design patterns in Java classes, particularly focusing on the idea that methods in a class must either be manipulators or builders. The literature review is divided into three subsections: (1) Method Design Patterns, (2) Classification Approaches, and (3) Tools and Techniques.
-\subsection{Method Design Patterns}
-\subsection{Classification Approaches}
-\subsection{Tools and Techniques}
+This section provides an overview of the existing literature on the topic of analyzing method design patterns in Java classes, particularly focusing on the idea that methods in a class must either be manipulators or builders.\\
+~\\
+In "{}Automated Refactoring of Legacy Java Software to Default Methods"{}, the authors describe a technique for automatically refactoring legacy Java software to utilize default methods \cite{ref1}. This work's relevance stems from its examination of refactoring patterns in Java, which aligns with our interest in method design patterns. However, our focus differs as we analyze patterns from publicly available GitHub repositories rather than legacy software.\\
+~\\
+The research by Yoshiki Higo \textit{et al.}\cite{ref2} titled "{}On tracking Java methods with Git mechanisms"{} focuses on the application of Git mechanisms for tracking changes in Java methods over time. Their findings offer valuable insights into the temporal aspect of method design patterns, which complement our syntactical analysis.\\
+~\\
+"{}Scripting parametric refactorings in Java to retrofit design patterns"{} \cite{ref3} presents a scripting method that facilitates refactoring of Java classes to embody specific design patterns. Although their focus is on refactoring existing code rather than analyzing 'as-is' patterns, this work offers interesting insights into how design patterns can be identified and applied.\\
+~\\
+Meanwhile, the study "{}Towards Predicting Architectural Design Patterns: A Machine Learning Approach"{} \cite{ref4}, leans towards the predictive side. The authors propose a machine learning model to predict suitable architectural patterns for a given codebase. Their approach is noteworthy as it introduces machine learning into the analysis of design patterns and is tangentially beneficial to our study.\\
+~\\
+N. Shi \textit{et al.} \cite{ref5} have conducted a meticulous study on "{}Reverse Engineering of Design Patterns from Java Source Code."{} This study concurs with our research as it also analyses design patterns from Java source code, albeit with a different focus.\\
+~\\
+"{}Applying learning-based methods for recognizing design patterns"{} \cite{ref6} introduces a learning-based approach for design pattern recognition. This work bears similarity to our own in its use of machine learning processes, providing key foundations for our present study.\\
+~\\
+Research on "{}Detecting similar repositories on GitHub"{} \cite{ref7} provides a method for grouping repositories with similar content. This is indirectly valuable to our study as we could use similar grouping techniques in our analysis of GitHub repositories.\\
+~\\
+Finally, the study "{}Dynamic Analysis and Design Pattern Detection in Java Programs"{} \cite{ref8} explores the detection of design patterns in executing Java programs. Although they examine the running programs, these insights are beneficial for our analysis of static source code design patterns.\\
+~\\
+In conclusion, each cited work contributes a unique perspective to the exploration and understanding of design patterns in Java, where we base our study on. Our research amalgamates these insights, striving to provide a thorough and contemporary understanding of method design patterns in public GitHub Java repositories. However, none of the above works specifically explores the topic of Manipulators and Builders in Java methods, which shows its relevance and the need for further research.\\
+
+
 ~\\
 
 \newpage
@@ -112,51 +129,23 @@ In the next section, we propose a methodology for analyzing method design patter
 \subsection{Data Collection}
 To analyze method design patterns in Java classes from public GitHub repositories, a large-scale dataset containing Java source code files is required. This dataset needs to cover a diverse range of projects to ensure a representative sample.\\
 ~\\
-The primary source of data for this research will be the CaM dataset. Classes and Metriсs (CaM) is a dataset of Java classes from public open-source GitHub repositories that updated periodically with new data.\\
+The primary source of data for this research will be the GitHub public API. The API allows programmatic access to a wide variety of information related to repositories, including source code files. The data will be collected by querying the API using appropriate search criteria to retrieve the required Java class files. The search criteria will include keywords related to the research topic, such as "{}Java class,"{} "{}method design patterns,"{} and variations thereof. The search will be conducted on repositories with a sufficient number of stars and forks to ensure popularity and quality.\\
 ~\\
-It is the result of the analysis of Java classes in 1000 GitHub repositories against a number of metrics:
-\begin{itemize}
-\item lines of code (reported by cloc),
-\item lines of comments,
-\item blank lines,
-\item NCSS,
-\item cyclomatic complexity,
-\item number of attributes,
-\item number of static attributes,
-\item number of constructors,
-\item number of methods,
-\item number of static methods,
-\item total cognitive complexity (reported by PMD),
-\item maximum cognitive complexity,
-\item minimum cognitive complexity,
-\item average cognitive complexity,
-\item number of committers.
-\end{itemize}
-~\\
-With this dataset, we will be able to track the use of manipulators and builders in the code. We will also calculate the percentage of the use of both principles and check whether they are used correctly.\\
+Furthermore, specific inclusion and exclusion criteria will be applied to filter the retrieved data effectively. Inclusion criteria will include the requirement for each repository to have a minimum number of contributors and commits to ensure that the project is actively developed. Exclusion criteria will be set to remove irrelevant projects, such as those written in languages other than Java or those containing predominantly auto-generated code. These criteria will be defined based on preliminary analysis and expert judgment.
 \subsection{Data Preprocessing and Cleaning}
-AST parsing is a technique used to extract information from code by analyzing its abstract syntax tree. An abstract syntax tree is a tree-like structure that represents the structure of the code, capturing its hierarchical relationships and syntax rules.\\
+Once the data is collected, it will undergo preprocessing and cleaning steps to filter out irrelevant information and prepare it for analysis. The preprocessing steps will include parsing the Java source code files to extract class-level details, method signatures, and associated metadata.\\
 ~\\
-In this research paper, the code used in the dataset will be divided into methods by AST parsing. The main goal is to separate the code into smaller units of functionality, which are represented by individual methods. This allows for a more detailed analysis and understanding of the code's logic and behavior.\\
-~\\
-By parsing the code into methods, authors can focus on specific parts of the code and analyze them in isolation. This can be especially useful when trying to determine the pattern used in the method: manipulator or builder.\\
+The cleaning process will consist of removing duplicates, irrelevant files (e.g., configuration files, test files), and incomplete files. Additionally, any sensitive information, such as account credentials or API keys, will be anonymized or removed to ensure data privacy.
 \subsection{Pattern Identification and Classification}
 To analyze the method design patterns in the Java classes, a pattern identification and classification process will be employed. This process includes detecting and categorizing the identified design patterns into manipulators or builders.\\
 ~\\
 To identify design patterns, a combination of lexical analysis, abstract syntax tree (AST) parsing, and rule-based matching will be utilized. Lexical analysis will assist in tokenizing the source code, while AST parsing will provide a hierarchical representation of the code's structure. Rule-based matching will be employed to detect specific patterns based on predefined rules and patterns from the literature.\\
 ~\\
-The methods will then be classified as manipulators or builders based on their characteristics and intent. This classification will be based on a combination of static analysis of the code and LLM validation.\\
-~\\
-Thus, several variants of pattern definition will be created for preprocessing of materials:
-\begin{itemize}
-  \item Rule-based code analyzer. To do this, we will go through the code line by line and check whether it returns anything, whether it changes parameters.
-  \item Automatic LM analyzer. To determine the pattern, a request will be made to the LLM model asking what kind of pattern it is.
-  \item Analyzer of the method name. In this case, to determine the pattern used in the method, its name will be checked.
-\end{itemize}
+The identified design patterns will then be classified as manipulators or builders based on their characteristics and intent. Manipulators are defined as methods that modify the internal state of an object, while builders are methods that construct and return new objects, usually with a fluent interface. This classification will be based on a combination of static analysis of the code and expert validation.
 \subsection{Evaluation and Validation}
 The method design patterns identified and classified through the aforementioned process will be evaluated and validated to ensure their accuracy and reliability.\\
 ~\\
-For evaluation, a set of randomly selected Java classes will be manually reviewed by authors to assess the correctness of the identified design patterns. They will compare the results obtained from the automated analysis with their domain knowledge to verify the accuracy of the classification.\\
+For evaluation, a set of randomly selected Java classes will be manually reviewed by domain experts to assess the correctness of the identified design patterns. They will compare the results obtained from the automated analysis with their domain knowledge to verify the accuracy of the classification.\\
 ~\\
 To further validate the findings, a survey will be conducted among a group of experienced Java developers. The survey will present them with code snippets containing identified design patterns and ask them to corroborate the classification. The feedback gathered from the survey will provide insights into the agreement between automated analysis and human judgment.
 \subsection{Analysis and Results}
@@ -202,13 +191,13 @@ In this section, we compare the properties and characteristics of manipulator an
 
 \newpage
 \section{Conclusion}
-In conclusion, this research paper aimed to analyze method design patterns in Java classes from public GitHub repositories, specifically focusing on the idea that methods in a class must either be manipulators or builders.\\
+In conclusion, this research work aimed to analyze method design patterns in Java classes from public GitHub repositories, specifically focusing on the idea that methods in a class must either be manipulators or builders.\\
 ~\\
 
 
 \newpage
 \section{Future Work}
-Although this research paper analyzed and identified method design patterns in Java classes from public GitHub repositories, there are several potential directions for future research and improvements. The following subsections outline some possible areas for future work.
+Although this research work analyzed and identified method design patterns in Java classes from public GitHub repositories, there are several potential directions for future research and improvements. The following subsections outline some possible areas for future work.
 \subsection{Evaluation of Other Design Patterns}
 While this work focused on identifying manipulator and builder patterns in Java classes, there still exist various other design patterns that can be analyzed. Future research could explore the detection and categorization of other commonly used design patterns, such as observer, singleton, factory, and adapter patterns. This would provide a more comprehensive understanding of the design patterns employed in publicly available Java code.
 \subsection{Evaluation of Method Interactions}
@@ -220,19 +209,36 @@ Although this study focused on Java classes, the approach used to identify desig
 \subsection{Integration with Development Tools}
 Integrating the pattern identification algorithm into popular Integrated Development Environments (IDEs) and software development tools would greatly benefit software developers. The automated detection and visualization of design patterns directly within the development environment could aid in the understanding, maintenance, and refactoring of software systems.\\
 ~\\
-Overall, this research paper provides a strong foundation for future research on the analysis and understanding of method design patterns in Java classes. The suggested future work directions aim to extend the current research and address important aspects that were not covered comprehensively in this study.\\
+Overall, this research work provides a strong foundation for future research on the analysis and understanding of method design patterns in Java classes. The suggested future work directions aim to extend the current research and address important aspects that were not covered comprehensively in this study.\\
 ~\\
-
-\newpage
-\section{References}
-\begin{hangparas}{0.5in}{1}
-~\\
-\end{hangparas}
 
 \newpage
 \section*{List of Sources Used}
-\begin{hangparas}{0.5in}{1}
-~\\
-\end{hangparas}
+\begin{thebibliography}{9}
+  \bibitem{ref1}
+  R. Khatchadourian and H. Masuhara, "{}Automated Refactoring of Legacy Java Software to Default Methods,"{} 2017 IEEE/ACM 39th International Conference on Software Engineering (ICSE), Buenos Aires, Argentina, 2017, pp. 82-93, doi: 10.1109/ICSE.2017.16, https://ieeexplore.ieee.org/abstract/document/7985652
+
+  \bibitem{ref2}
+  Yoshiki Higo, Shinpei Hayashi, Shinji Kusumoto, On tracking Java methods with Git mechanisms, Journal of Systems and Software,Volume 165,2020,110571,ISSN 0164-1212, https://doi.org/10.1016/j.jss.2020.110571.
+
+  \bibitem{ref3}
+  J. Kim, D. Batory and D. Dig, "{}Scripting parametric refactorings in Java to retrofit design patterns"{} 2015 IEEE International Conference on Software Maintenance and Evolution (ICSME), Bremen, Germany, 2015, pp. 211-220, doi: 10.1109/ICSM.2015.7332467, https://ieeexplore.ieee.org/abstract/document/7332467
+
+  \bibitem{ref4}
+  Komolov, S.; Dlamini, G.; Megha, S.; Mazzara, M. Towards Predicting Architectural Design Patterns: A Machine Learning Approach. Computers 2022, 11, 151. https://doi.org/10.3390/computers11100151
+
+  \bibitem{ref5}
+  N. Shi and R. A. Olsson, "{}Reverse Engineering of Design Patterns from Java Source Code,"{} 21st IEEE/ACM International Conference on Automated Software Engineering (ASE'06), Tokyo, Japan, 2006, pp. 123-134, doi: 10.1109/ASE.2006.57, https://ieeexplore.ieee.org/abstract/document/4019568
+
+  \bibitem{ref6}
+  Dwivedi, A.K., Tirkey, A. \& Rath, S.K. Applying learning-based methods for recognizing design patterns. Innovations Syst Softw Eng 15, 87–100 (2019). https://doi.org/10.1007/s11334-019-00329-3
+
+  \bibitem{ref7}
+  Y. Zhang, D. Lo, P. S. Kochhar, X. Xia, Q. Li and J. Sun, "{}Detecting similar repositories on GitHub,"{} 2017 IEEE 24th International Conference on Software Analysis, Evolution and Reengineering (SANER), Klagenfurt, Austria, 2017, pp. 13-23, doi: 10.1109/SANER.2017.7884605, https://ieeexplore.ieee.org/abstract/document/7884605
+
+  \bibitem{ref8}
+  Hu, Lei \& Sartipi, Kamran. (2008). Dynamic Analysis and Design Pattern Detection in Java Programs.. 20th International Conference on Software Engineering and Knowledge Engineering, SEKE 2008. 842-846, https://ecommons.luc.edu/cgi/viewcontent.cgi?referer=\&httpsredir=1\&article=1036\&context=cs\_facpubs\#page=871
+
+\end{thebibliography}
 
 \end{document}
